@@ -1,1 +1,0 @@
-Email successfully verified!
