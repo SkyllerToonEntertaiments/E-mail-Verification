@@ -1,137 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Eco Switch — E-mail Confirmado</title>
-  <style>
-    :root{
-      --bg1:#0f172a; /* deep night */
-      --bg2:#07162a; /* deep forest */
-      --card:#fafafa;
-      --accent:#73d677; /* green */
-      --muted:#9aa4b2;
-      --glass: rgba(255,255,255,0.06);
-      --card-shadow: 0 10px 30px rgba(2,6,23,0.6);
-      --radius:18px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-mail Confirmado — Eco Switch</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Inter", Arial, sans-serif;
+            background: #09182e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #e9ecef;
+        }
 
-    /* Page layout */
-    html,body{height:100%;}
-    body{
-      margin:0;
-      min-height:100%;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(115,214,119,0.06), transparent 10%),
-                  linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%);
-      color:var(--card);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:32px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+        .card {
+            background: #0f233f;
+            width: 480px;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            text-align: left;
+        }
 
-    /* Decorative scene container */
-    .scene{
-      width:980px;
-      max-width:100%;
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:28px;
-      align-items:center;
-    }
+        .tag {
+            font-size: 14px;
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
 
-    /* Left card: message */
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius:var(--radius);
-      padding:34px;
-      box-shadow:var(--card-shadow);
-      backdrop-filter: blur(6px) saturate(120%);
-      border: 1px solid rgba(255,255,255,0.03);
-    }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
 
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:8px;
-    }
-    .logo .mark{
-      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#8ee08a,#43a047);
-      display:grid;place-items:center;font-weight:700;color:#05221a;font-size:22px;box-shadow:0 6px 20px rgba(8,28,16,0.35);
-    }
-    h1{margin:6px 0 0 0;font-size:28px;letter-spacing:-0.02em}
-    p.lead{color:var(--muted);margin:14px 0 22px 0;line-height:1.45}
+        .icon-box {
+            background: #2ecc71;
+            color: #0c2916;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
 
-    .confirm-badge{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg, rgba(115,214,119,0.14), rgba(115,214,119,0.06));
-      color:var(--card);font-weight:600;margin-bottom:18px;border:1px solid rgba(115,214,119,0.12)
-    }
-    .confirm-badge svg{width:20px;height:20px}
+        .status {
+            display: flex;
+            align-items: center;
+            background: #0d3a21;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #c9ffdd;
+            margin-bottom: 22px;
+            border: 1px solid #29a861;
+        }
 
-    .actions{display:flex;gap:12px;align-items:center}
-    .btn{
-      appearance:none;border:0;padding:12px 20px;border-radius:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:10px;
-    }
-    .btn-primary{background:linear-gradient(90deg,#6ee07a,#2aa05a);color:#00220f;box-shadow:0 8px 20px rgba(18,50,27,0.35)}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--card);padding:10px 16px}
+        .status::before {
+            content: "✔";
+            margin-right: 10px;
+            font-weight: bold;
+        }
 
-    .hint{margin-top:14px;color:var(--muted);font-size:13px}
+        .texto {
+            font-size: 14px;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
 
-    /* Right: animal illustration panel */
-    .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.02)
-    }
-
-    .animals{width:100%;display:flex;gap:10px;align-items:center;justify-content:space-around}
-    .animal{width:120px;max-width:28%;text-align:center}
-    .animal svg{width:100%;height:auto;display:block}
-    .caption{font-size:13px;color:var(--muted);margin-top:8px}
-
-    /* responsive */
-    @media (max-width:880px){
-      .scene{grid-template-columns:1fr;}
-      .animals{gap:18px}
-      .animal{width:28%}
-    }
-
-    footer{margin-top:16px;color:var(--muted);font-size:13px;text-align:center}
-  </style>
+        .footer {
+            font-size: 13px;
+            text-align: center;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-  <main class="scene" role="main">
-    <section class="card" aria-labelledby="title">
-      <div class="logo">
-        <div class="mark">ES</div>
-        <div>
-          <div style="font-size:12px;color:var(--muted);font-weight:600">Eco Switch</div>
-          <h1 id="title">E-mail confirmado — Bem-vindo(a) à Eco Switch!</h1>
+
+    <div class="card">
+        <div class="tag">Eco Switch</div>
+        
+        <div class="title">
+            <span class="icon-box">ES</span>
+            E-mail confirmado — Bem-vindo(a) à Eco Switch!
         </div>
-      </div>
 
-      <div class="confirm-badge" role="status">
-        <!-- check icon -->
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" stroke="rgba(115,214,119,0.9)" stroke-width="0.6" fill="rgba(115,214,119,0.12)"/>
-          <path d="M7.8 12.6l2.6 2.6 5.8-6" stroke="#05221a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Seu e-mail foi confirmado com sucesso</span>
-      </div>
+        <div class="status">
+            Seu e-mail foi confirmado com sucesso
+        </div>
 
-      <p class="lead">Tudo pronto — sua conta está válida e você já pode fazer login em Eco Switch!</p>
+        <div class="texto">
+            Tudo pronto — sua conta está válida e você já pode fazer login em Eco Switch!<br><br>
+            Se você não iniciou esse processo, entre em contato com o suporte do jogo.
+        </div>
 
-      
+        <div class="footer">
+            Eco Switch — Preserve o Futuro
+        </div>
+    </div>
 
-      <p class="hint">Se você não iniciou esse processo, entre em contato com o suporte do jogo.</p>
-
-      <footer>Eco Switch — Preserve o Futuro</footer>
-    </section>
-
-    
-  </main>
 </body>
 </html>
